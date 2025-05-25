@@ -1,0 +1,10 @@
+body{
+     font-family: "Nunito", sans-serif;
+}
+
+.MuiBadge-badge {background: #ff5252 !important;}
+
+
+.ReactCollaose--collapse{
+    transition: height 300ms;
+}
