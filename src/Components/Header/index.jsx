@@ -1,6 +1,5 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import Button from '@mui/material/Button';
-import { RiMenu2Line } from "react-icons/ri";
 import Badge from '@mui/material/Badge';
 import { styled } from '@mui/material/styles';
 import IconButton from '@mui/material/IconButton';
@@ -9,8 +8,13 @@ import Divider from '@mui/material/Divider';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import { FaRegUser } from "react-icons/fa6";
-import { MdAccountCircle } from "react-icons/md";
 import { LiaSignOutAltSolid } from "react-icons/lia";
+import { MyContext } from '../../App'
+import { RiMenuFold3Fill } from "react-icons/ri";
+import { RiMenuFold4Fill } from "react-icons/ri";
+import { Link } from "react-router-dom";
+
+
 
 
 const StyledBadge = styled(Badge)(({ theme }) => ({
@@ -21,7 +25,6 @@ const StyledBadge = styled(Badge)(({ theme }) => ({
     padding: '0 4px',
   },
 }));
-
 
 
 const Header = () => {
@@ -36,12 +39,23 @@ const Header = () => {
     setAnchorMyAcc(null);
   };
 
+  const context = useContext(MyContext);
+
 
   return (
     <>
-      <header className="w-ful py-2 h-[auto] pl-72 shadow-md pr-8 bg-[#fff]  flex items-center justify-between">
+      <header className={`w-full py-2 h-[auto] ${context.isSidebarOpen === true ? 'pl-72' : 'pl-5'} shadow-md pr-8 bg-[#fff]  flex items-center justify-between transition-all`}>
         <div className="part1">
-          <Button className="!w-[40px] !h-[40px] !rounded-full !min-w-[40px] !text-[rgba(0,0,0,0.8)]"><RiMenu2Line className="text-[18px] text-[rgba(0,0,0,0.8)]" /></Button>
+          <Button className="!w-[40px] !h-[40px] !rounded-full !min-w-[40px] !text-[rgba(0,0,0,0.8)]"
+            onClick={() => context.setIsSidebarOpen(!context.isSidebarOpen)}>
+            {
+              context.isSidebarOpen === true ?
+                <RiMenuFold3Fill className="text-[18px] text-[rgba(0,0,0,0.8)]" />
+                :
+                <RiMenuFold4Fill className="text-[18px] text-[rgba(0,0,0,0.8)]" />
+            }
+
+          </Button>
         </div>
 
         <div className="part2 w-[40%] flex items-center justify-end gap-5">
@@ -52,7 +66,9 @@ const Header = () => {
           </IconButton>
 
 
-          <div className="relative">
+          {
+            context.isLogin===true ? 
+             <div className="relative">
             <div className="rounded-full w-[35px] h-[35px] overflow-hidden cursor-pointer" onClick={handleClickMyAcc}>
               <img src="https://emilus.themenate.net/img/avatars/thumb-1.jpg" className="w-full object-cover h-full">
               </img>
@@ -60,11 +76,10 @@ const Header = () => {
 
 
             <Menu
-              anchorMyAcc={anchorMyAcc}
+              anchorEl={anchorMyAcc}
               id="account-menu"
               open={openMyAcc}
               onClose={handleCloseMyAcc}
-              onClick={handleClickMyAcc}
               slotProps={{
                 paper: {
                   elevation: 0,
@@ -123,6 +138,10 @@ const Header = () => {
 
             </Menu>
           </div>
+          :
+         <Link to="/login"> <Button className="btn-blue btn-sm !rounded-full">Sign in</Button></Link>
+          }
+
 
         </div>
 
@@ -132,6 +151,7 @@ const Header = () => {
 }
 
 export default Header;
+
 
 
 

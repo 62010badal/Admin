@@ -1,10 +1,42 @@
 body{
-     font-family: "Nunito", sans-serif;
+     font-family: "Montserrat", serif;
+     background: #f1f1f1 !important;
 }
 
 .MuiBadge-badge {background: #ff5252 !important;}
 
+::-webkit-scrollbar{width: 10px !important; height: 10px !important;}
+::-webkit-scrollbar-thumb{background: #ccc !important;}
 
 .ReactCollaose--collapse{
     transition: height 300ms;
+}
+
+.btn{padding:8px 20px !important}
+
+.btn-blue{background: #3872fa !important; color: #fff !important; padding: 8px 20px !important;}
+.btn-blue:hover{background: #3067e5 !important;}
+
+th.MuiTableCell-root {
+  @apply bg-[#f1f1f1];
+  padding: 1px;
+}
+
+.btn-sm{padding: 6px 20px !important; font-size: 13px !important;}
+.btn-lg{padding: 8px 20px !important; font-size: 16px !important;}
+
+.css-rizt0-MuiTypography-root{font-size: 14px !important;}
+
+.MuiAppBar-colorPrimary{background: #e6e6e6 !important;}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
 }
