@@ -9,7 +9,17 @@ import Login from './Pages/Login';
 import SignUp from './Pages/SignUp';
 import Products from './Pages/Products';
 import UploadProduct from './Pages/Products/AddProduct';
-
+import HomeSliderBanner from './Pages/HomeSliderBanner'; 
+import AddHomeSlide from './Pages/HomeSliderBanner/AddHomeSlide';
+import AddCategory from './Pages/Category/AddCategory';
+import CategoryList from './Pages/Category';
+import SubCatList from './Pages/Category/SubCatList';
+import AddSubCategory from './Pages/Category/AddSubCategory';
+import Orders from './Pages/Orders';
+import Users from './Pages/Users';
+import ForgotPassword from './Pages/ForgotPassword';
+import VerifyAccount from './Pages/VerifyAccount';
+import ChangePassword from './Pages/ChangePassword';
 // Full Scrren Pannel
 import Dialog from '@mui/material/Dialog';
 import AppBar from '@mui/material/AppBar';
@@ -37,9 +47,6 @@ const [isOpenFullScreenPanel, setIsOpenFullScreenPanel] = useState({
 });
   
 
-  // const handleCloseFullScreenPanel = () => {
-  //   setIsOpenFullScreenPanel(true);
-  // };
   const handleCloseFullScreenPanel = () => {
   setIsOpenFullScreenPanel({ open: false, model: '' });
 };
@@ -73,6 +80,28 @@ const [isOpenFullScreenPanel, setIsOpenFullScreenPanel] = useState({
       element:
         <>
           <Login />,
+        </>
+    },  
+    {
+      path: '/change-password',
+      element:
+        <>
+          <ChangePassword />,
+        </>
+    },
+    {
+      path: '/forgot-password',
+      element:
+        <>
+          <ForgotPassword />,
+        </>
+      ,
+    },
+    {
+      path: '/verify-account',
+      element:
+        <>
+          <VerifyAccount />,
         </>
       ,
     },
@@ -113,6 +142,102 @@ const [isOpenFullScreenPanel, setIsOpenFullScreenPanel] = useState({
           <UploadProduct />
         </>
       ,
+    },
+    {
+      path: '/homeSlider/list',
+      exact:true,
+      element:(
+        <>
+     <section className='main'>
+            <Header />
+            <div className="contentMain flex">
+              <div className={`overflow-hidden sidebarWrapper ${isSidebarOpen === true ? 'w-[18%]' : 'w-[0%] opacity-0'} transition-all `}>
+                <Sidebar />
+              </div>
+              <div className={`contentRight py-4 px-5 ${isSidebarOpen === false ? 'w-full' : 'w-[82%]'} transition-all`}>
+                <HomeSliderBanner />
+              </div>
+            </div>
+          </section>
+          </>
+      ),
+    },
+     {
+      path: '/category/list',
+      exact:true,
+      element:(
+        <>
+     <section className='main'>
+            <Header />
+            <div className="contentMain flex">
+              <div className={`overflow-hidden sidebarWrapper ${isSidebarOpen === true ? 'w-[18%]' : 'w-[0%] opacity-0'} transition-all `}>
+                <Sidebar />
+              </div>
+              <div className={`contentRight py-4 px-5 ${isSidebarOpen === false ? 'w-full' : 'w-[82%]'} transition-all`}>
+                < CategoryList/>
+              </div>
+            </div>
+          </section>
+          </>
+      ),
+    },
+     {
+      path: '/subcategory/list',
+      exact:true,
+      element:(
+        <>
+     <section className='main'>
+            <Header />
+            <div className="contentMain flex">
+              <div className={`overflow-hidden sidebarWrapper ${isSidebarOpen === true ? 'w-[18%]' : 'w-[0%] opacity-0'} transition-all `}>
+                <Sidebar />
+              </div>
+              <div className={`contentRight py-4 px-5 ${isSidebarOpen === false ? 'w-full' : 'w-[82%]'} transition-all`}>
+                < SubCatList/>
+              </div>
+            </div>
+          </section>
+          </>
+      ),
+    },
+    {
+      path: '/users',
+      exact:true,
+      element:(
+        <>
+     <section className='main'>
+            <Header />
+            <div className="contentMain flex">
+              <div className={`overflow-hidden sidebarWrapper ${isSidebarOpen === true ? 'w-[18%]' : 'w-[0%] opacity-0'} transition-all `}>
+                <Sidebar />
+              </div>
+              <div className={`contentRight py-4 px-5 ${isSidebarOpen === false ? 'w-full' : 'w-[82%]'} transition-all`}>
+                < Users/>
+              </div>
+            </div>
+          </section>
+          </>
+      ),
+    },
+    
+    {
+      path: '/orders',
+      exact:true,
+      element:(
+        <>
+     <section className='main'>
+            <Header />
+            <div className="contentMain flex">
+              <div className={`overflow-hidden sidebarWrapper ${isSidebarOpen === true ? 'w-[18%]' : 'w-[0%] opacity-0'} transition-all `}>
+                <Sidebar />
+              </div>
+              <div className={`contentRight py-4 px-5 ${isSidebarOpen === false ? 'w-full' : 'w-[82%]'} transition-all`}>
+                < Orders/>
+              </div>
+            </div>
+          </section>
+          </>
+      ),
     },
   ]);
 
@@ -159,6 +284,18 @@ const [isOpenFullScreenPanel, setIsOpenFullScreenPanel] = useState({
         {
           isOpenFullScreenPanel?.model === "Add Product" && <UploadProduct/>
         }
+
+         {
+          isOpenFullScreenPanel?.model === "Add Home Slide" && <AddHomeSlide/>
+        }
+        
+         {
+          isOpenFullScreenPanel?.model === "Add New Category" && <AddCategory/>
+        }
+
+        {
+          isOpenFullScreenPanel?.model === "Add New Sub Category" && <AddSubCategory/>
+        }
       </Dialog>
       </MyContext.Provider>
     </>
@@ -167,3 +304,5 @@ const [isOpenFullScreenPanel, setIsOpenFullScreenPanel] = useState({
 
 export default App;
 export { MyContext };
+
+

@@ -40,3 +40,5 @@ input::-webkit-inner-spin-button {
 input[type=number] {
   -moz-appearance: textfield;
 }
+
+.MuiTableBody-root tr:nth-child(even){@apply bg-gray-50}
